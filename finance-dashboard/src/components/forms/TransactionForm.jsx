@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useFinance } from "../context/FinanceContext";
+import { useFinance } from "../../context/FinanceContext";
+import Swal from "sweetalert2";
 
 export default function TransactionForm() {
   const { addTransaction, role } = useFinance();
@@ -22,7 +23,7 @@ export default function TransactionForm() {
     e.preventDefault();
 
     if (!form.title || !form.amount || !form.category || !form.date) {
-      alert("Please fill all fields");
+      Swal.fire("Error", "Please fill all fields", "error");
       return;
     }
 
@@ -30,6 +31,8 @@ export default function TransactionForm() {
       ...form,
       amount: Number(form.amount),
     });
+
+    Swal.fire("Success", "Transaction added", "success");
 
     setForm({
       title: "",
@@ -43,11 +46,9 @@ export default function TransactionForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow space-y-4"
+      className="bg-white dark:bg-[#111827] p-6 rounded-2xl shadow space-y-5"
     >
-      <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-        Add Transaction
-      </h3>
+      <h3 className="text-lg font-semibold text-black dark:text-white">Add Transaction</h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input
@@ -55,7 +56,7 @@ export default function TransactionForm() {
           value={form.title}
           onChange={handleChange}
           placeholder="Title"
-          className="border rounded px-3 py-2 w-full"
+          className="bg-[#0B1220] border border-gray-700 text-black dark:text-white px-4 py-2 rounded-lg outline-none"
         />
 
         <input
@@ -64,14 +65,14 @@ export default function TransactionForm() {
           onChange={handleChange}
           placeholder="Amount"
           type="number"
-          className="border rounded px-3 py-2 w-full"
+          className="bg-[#0B1220] border border-gray-700 text-black dark:text-white px-4 py-2 rounded-lg outline-none"
         />
 
         <select
           name="type"
           value={form.type}
           onChange={handleChange}
-          className="border rounded px-3 py-2 w-full"
+          className="bg-[#0B1220] border border-gray-700 text-black dark:text-white px-4 py-2 rounded-lg"
         >
           <option value="income">Income</option>
           <option value="expense">Expense</option>
@@ -82,7 +83,7 @@ export default function TransactionForm() {
           value={form.category}
           onChange={handleChange}
           placeholder="Category"
-          className="border rounded px-3 py-2 w-full"
+          className="bg-[#0B1220] border border-gray-700 text-black dark:text-white px-4 py-2 rounded-lg outline-none"
         />
 
         <input
@@ -90,13 +91,13 @@ export default function TransactionForm() {
           value={form.date}
           onChange={handleChange}
           type="date"
-          className="border rounded px-3 py-2 w-full md:col-span-2"
+          className="bg-[#0B1220] border border-gray-700 text-black dark:text-white px-4 py-2 rounded-lg md:col-span-2"
         />
       </div>
 
       <button
         type="submit"
-        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded w-full md:w-auto"
+        className="bg-blue-600 hover:bg-blue-700 transition text-black dark:text-white px-5 py-2 rounded-lg w-full md:w-auto"
       >
         Add Transaction
       </button>

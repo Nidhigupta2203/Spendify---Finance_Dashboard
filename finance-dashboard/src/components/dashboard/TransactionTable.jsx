@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useFinance } from "../context/FinanceContext";
+import { useFinance } from "../../context/FinanceContext";
 import Swal from "sweetalert2";
 
 export default function TransactionTable() {
@@ -11,10 +11,11 @@ export default function TransactionTable() {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Delete?",
-      text: "This cannot be undone",
+      title: "Delete transaction?",
+      text: "This action cannot be undone",
       icon: "warning",
       showCancelButton: true,
+      confirmButtonColor: "#ef4444",
     }).then((res) => {
       if (res.isConfirmed) deleteTransaction(id);
     });
@@ -22,44 +23,42 @@ export default function TransactionTable() {
 
   let filtered = [...transactions];
 
-  // search
+  // Search
   filtered = filtered.filter((t) =>
     t.title.toLowerCase().includes(search.toLowerCase()),
   );
 
-  // filter
+  // Filter
   if (filterType !== "all") {
     filtered = filtered.filter((t) => t.type === filterType);
   }
 
-  // sort
+  // Sort
   filtered.sort((a, b) => {
     if (sortOrder === "latest") return new Date(b.date) - new Date(a.date);
     if (sortOrder === "oldest") return new Date(a.date) - new Date(b.date);
     if (sortOrder === "high") return b.amount - a.amount;
     if (sortOrder === "low") return a.amount - b.amount;
+    return 0;
   });
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+    <div className="bg-white dark:bg-[#111827] p-6 rounded-2xl shadow">
       {/* Controls */}
-      <div className="flex flex-wrap gap-3 mb-4">
+      <div className="flex flex-col md:flex-row md:items-center gap-3 mb-6">
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search transactions..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border rounded px-3 py-2 w-full md:w-auto"
+          className="bg-[#0B1220] border border-gray-700 text-black dark:text-white px-4 py-2 rounded-lg w-full md:w-64 outline-none"
         />
 
         <select
-  value={filterType}
-  onChange={(e) => setFilterType(e.target.value)}
-  className="bg-[#111827] text-white border border-gray-700 px-3 py-2 rounded"
->
-  <option className="text-black" value="all">All</option>
-  <option className="text-black" value="income">Income</option>
-  <option className="text-black" value="expense">Expense</option>
+          value={filterType}
+          onChange={(e) => setFilterType(e.target.value)}
+          className="bg-[#0B1220] text-black dark:text-white border border-gray-700 px-3 py-2 rounded-lg"
+        >
           <option value="all">All</option>
           <option value="income">Income</option>
           <option value="expense">Expense</option>
@@ -68,20 +67,12 @@ export default function TransactionTable() {
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className="bg-[#111827] text-white border border-gray-700 px-3 py-2 rounded"
+          className="bg-[#0B1220] text-black dark:text-white border border-gray-700 px-3 py-2 rounded-lg"
         >
-          <option className="text-black" value="latest">
-            Latest
-          </option>
-          <option className="text-black" value="oldest">
-            Oldest
-          </option>
-          <option className="text-black" value="high">
-            High Amount
-          </option>
-          <option className="text-black" value="low">
-            Low Amount
-          </option>
+          <option value="latest">Latest</option>
+          <option value="oldest">Oldest</option>
+          <option value="high">High Amount</option>
+          <option value="low">Low Amount</option>
         </select>
       </div>
 
@@ -89,8 +80,8 @@ export default function TransactionTable() {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-left border-b text-gray-500 dark:text-gray-300">
-              <th className="py-2">Date</th>
+            <tr className="text-left border-b border-gray-700 text-gray-400">
+              <th className="py-3">Date</th>
               <th>Title</th>
               <th>Amount</th>
               <th>Category</th>
@@ -103,29 +94,29 @@ export default function TransactionTable() {
             {filtered.map((t) => (
               <tr
                 key={t.id}
-                className="border-b hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="border-b border-gray-800 hover:bg-[#1F2937] transition"
               >
-                <td className="py-2">{t.date}</td>
+                <td className="py-3">{t.date}</td>
                 <td>{t.title}</td>
 
                 <td
                   className={
                     t.type === "income"
-                      ? "text-green-500 font-medium"
-                      : "text-red-500 font-medium"
+                      ? "text-green-400 font-medium"
+                      : "text-red-400 font-medium"
                   }
                 >
-                  ₹ {t.amount}
+                  ₹ {Number(t.amount).toLocaleString("en-IN")}
                 </td>
 
                 <td>{t.category}</td>
-                <td className="capitalize">{t.type}</td>
+                <td className="capitalize text-gray-300">{t.type}</td>
 
                 {role === "admin" && (
                   <td>
                     <button
                       onClick={() => handleDelete(t.id)}
-                      className="text-red-500 hover:underline"
+                      className="text-red-400 hover:text-red-300 text-sm"
                     >
                       Delete
                     </button>
@@ -137,7 +128,7 @@ export default function TransactionTable() {
         </table>
       </div>
 
-      {/* Empty state */}
+      {/* Empty */}
       {filtered.length === 0 && (
         <p className="text-center text-gray-500 py-6">No transactions found</p>
       )}

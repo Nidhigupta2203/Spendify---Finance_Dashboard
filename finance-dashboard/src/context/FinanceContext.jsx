@@ -1,47 +1,51 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const FinanceContext = createContext();
+export const FinanceContext = createContext();
 
-export const useFinance = () => useContext(FinanceContext);
-
-export const FinanceProvider = ({ children }) => {
+export function FinanceProvider({ children }) {
   const [transactions, setTransactions] = useState(() => {
-    const data = localStorage.getItem("transactions");
-    return data ? JSON.parse(data) : [];
+    const saved = localStorage.getItem("transactions");
+    return saved ? JSON.parse(saved) : [];
   });
 
   const [role, setRole] = useState("admin");
 
+  // Save to localStorage
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
 
-  const addTransaction = (txn) => {
-    setTransactions((prev) => [...prev, { ...txn, id: Date.now() }]);
+  // Add transaction
+  const addTransaction = (transaction) => {
+    const newTransaction = {
+      ...transaction,
+      id: Date.now(),
+    };
+
+    setTransactions((prev) => [newTransaction, ...prev]);
   };
 
+  // Delete transaction
   const deleteTransaction = (id) => {
     setTransactions((prev) => prev.filter((t) => t.id !== id));
-  };
-
-  const editTransaction = (updated) => {
-    setTransactions((prev) =>
-      prev.map((t) => (t.id === updated.id ? updated : t)),
-    );
   };
 
   return (
     <FinanceContext.Provider
       value={{
         transactions,
-        role,
-        setRole,
         addTransaction,
         deleteTransaction,
-        editTransaction,
+        role,
+        setRole,
       }}
     >
       {children}
     </FinanceContext.Provider>
   );
+}
+
+// Custom hook
+export const useFinance = () => {
+  return useContext(FinanceContext);
 };

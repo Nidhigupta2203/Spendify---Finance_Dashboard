@@ -14,3 +14,40 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+src/
+ ├── components/
+ │    ├── ui/
+ │    │    ├── Button.jsx
+ │    │    ├── Card.jsx
+ │    │    ├── Input.jsx
+ │    │
+ │    ├── layout/
+ │    │    ├── Sidebar.jsx
+ │    │    ├── Topbar.jsx
+ │    │
+ │    ├── dashboard/
+ │    │    ├── SummaryCards.jsx
+ │    │    ├── Charts.jsx
+ │    │    ├── Insights.jsx
+ │    │    ├── TransactionTable.jsx
+ │    │
+ │    ├── forms/
+ │         ├── TransactionForm.jsx
+ │
+ ├── pages/
+ │    ├── Dashboard.jsx
+ │
+ ├── context/
+ │    ├── FinanceContext.jsx
+ │
+ ├── hooks/
+ │    ├── useFinance.js
+ │
+ ├── utils/
+ │    ├── helpers.js
+ │
+ ├── App.jsx
+ ├── main.jsx
+ ├── index.css
