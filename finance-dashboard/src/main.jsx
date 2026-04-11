@@ -1,13 +1,11 @@
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { FinanceProvider } from "./context/FinanceContext";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import App from "./App";
+import { FinanceProvider } from "./context/FinanceContext";
 import "./index.css";
 
-createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <FinanceProvider>
-      <App />
-    </FinanceProvider>
-  </BrowserRouter>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <FinanceProvider>
+    <App />
+  </FinanceProvider>,
 );

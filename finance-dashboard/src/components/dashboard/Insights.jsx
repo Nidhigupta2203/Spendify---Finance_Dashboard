@@ -2,15 +2,16 @@ import { useFinance } from "../../context/FinanceContext";
 import { FaLightbulb } from "react-icons/fa";
 
 export default function Insights() {
-  const context = useFinance();
-  const transactions = context?.transactions || [];
-
-  const expenses = transactions.filter((t) => t.type === "expense");
+  const { transactions } = useFinance();
 
   // Top category
   const categoryMap = {};
-  expenses.forEach((t) => {
-    categoryMap[t.category] = (categoryMap[t.category] || 0) + Number(t.amount);
+
+  transactions.forEach((t) => {
+    if (t.type === "expense") {
+      categoryMap[t.category] =
+        (categoryMap[t.category] || 0) + Number(t.amount);
+    }
   });
 
   let topCategory = "None";
@@ -23,17 +24,18 @@ export default function Insights() {
     }
   }
 
-  // Current & previous month
+  // Monthly comparison
   const now = new Date();
   const currentMonth = now.toISOString().slice(0, 7);
+
   const prevDate = new Date(now.getFullYear(), now.getMonth() - 1);
   const prevMonth = prevDate.toISOString().slice(0, 7);
 
   let currentTotal = 0;
   let prevTotal = 0;
 
-  expenses.forEach((t) => {
-    if (!t.date) return;
+  transactions.forEach((t) => {
+    if (!t.date || t.type !== "expense") return;
 
     const month = t.date.slice(0, 7);
 
@@ -46,62 +48,50 @@ export default function Insights() {
       ? 0
       : (((currentTotal - prevTotal) / prevTotal) * 100).toFixed(1);
 
-  // Biggest expense
-  let biggest = 0;
-  let biggestTitle = "-";
-
-  expenses.forEach((t) => {
-    if (Number(t.amount) > biggest) {
-      biggest = Number(t.amount);
-      biggestTitle = t.title;
-    }
-  });
-
-  // Avg daily
-  const days = new Date().getDate();
-  const avgDaily = days ? (currentTotal / days).toFixed(0) : 0;
-
   if (transactions.length === 0) {
     return (
-      <div className="bg-[#111827] p-6 rounded-2xl text-gray-400">
+      <div className="bg-white dark:bg-[#111827] p-6 rounded-2xl text-gray-400">
         No insights available. Add transactions.
       </div>
     );
   }
 
   return (
-    <div className="bg-[#111827] p-6 rounded-2xl">
+    <div className="bg-white dark:bg-[#111827] p-6 rounded-2xl shadow">
+      {/* Header */}
       <div className="flex items-center gap-2 mb-5">
         <FaLightbulb className="text-yellow-400" />
-        <h2 className="text-lg font-semibold">Insights</h2>
+        <h2 className="text-lg font-semibold text-black dark:text-white">Insights</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 text-sm">
-        <Card title="Top Category" value={topCategory} />
+      {/* Content */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+        {/* Top Category */}
+        <div className="bg-[#0B1220] p-4 rounded-xl">
+          <p className="text-gray-400">Top Category</p>
+          <h3 className="text-black dark:text-white font-semibold mt-2">{topCategory}</h3>
+        </div>
 
-        <Card title="This Month" value={`₹ ${currentTotal}`} />
+        {/* Current Month */}
+        <div className="bg-[#0B1220] p-4 rounded-xl">
+          <p className="text-gray-400">This Month</p>
+          <h3 className="text-black dark:text-white font-semibold mt-2">
+            ₹ {currentTotal.toLocaleString("en-IN")}
+          </h3>
+        </div>
 
-        <Card
-          title="Change"
-          value={`${change}%`}
-          color={change >= 0 ? "text-red-400" : "text-green-400"}
-        />
-
-        <Card title="Biggest Expense" value={`₹ ${biggest}`} />
-
-        <Card title="Avg Daily" value={`₹ ${avgDaily}`} />
-
-        <Card title="Transactions" value={transactions.length} />
+        {/* Change */}
+        <div className="bg-[#0B1220] p-4 rounded-xl">
+          <p className="text-gray-400">Change</p>
+          <h3
+            className={`font-semibold mt-2 ${
+              change >= 0 ? "text-red-400" : "text-green-400"
+            }`}
+          >
+            {change}%
+          </h3>
+        </div>
       </div>
-    </div>
-  );
-}
-
-function Card({ title, value, color }) {
-  return (
-    <div className="bg-[#0B1220] p-4 rounded-xl">
-      <p className="text-gray-400">{title}</p>
-      <h3 className={`mt-2 font-semibold ${color || "text-white"}`}>{value}</h3>
     </div>
   );
 }

@@ -2,6 +2,7 @@
   "name": "finance-dashboard",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,10 +11,9 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-icons": "^5.6.0",
-    "react-router-dom": "^6.30.3",
     "recharts": "^3.8.1",
     "sweetalert2": "^11.26.24"
   },
