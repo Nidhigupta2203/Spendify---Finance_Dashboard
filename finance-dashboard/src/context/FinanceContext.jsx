@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-export const FinanceContext = createContext();
+export const FinanceContext = createContext(null);
 
 export function FinanceProvider({ children }) {
   const [transactions, setTransactions] = useState(() => {

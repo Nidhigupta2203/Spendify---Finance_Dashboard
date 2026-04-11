@@ -12,7 +12,8 @@ import {
 } from "recharts";
 
 export default function Charts() {
-  const { transactions } = useFinance();
+  const context = useFinance();
+const transactions = context?.transactions || [];
 
   // Monthly data
   const monthly = {};
@@ -79,7 +80,7 @@ export default function Charts() {
                   style={{
                     width: `${Math.min(
                       (item.value /
-                        Math.max(...categoryData.map((c) => c.value))) *
+                        Math.max(...categoryData.map((c) => c.value), 1)) *
                         100,
                       100,
                     )}%`,
@@ -119,8 +120,8 @@ export default function Charts() {
         <h3 className="mb-4 text-gray-300 font-medium">Category Breakdown</h3>
 
         <div className="w-full h-72">
-          <ResponsiveContainer>
-            <PieChart>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart width={400} height={300}>
               <Pie
                 data={categoryData}
                 dataKey="value"

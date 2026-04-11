@@ -2,8 +2,9 @@ import { useFinance } from "../../context/FinanceContext";
 import { FaWallet, FaArrowUp, FaArrowDown, FaPiggyBank } from "react-icons/fa";
 
 export default function SummaryCards() {
-  const { transactions } = useFinance();
-
+const context = useFinance();
+  const transactions = context?.transactions || [];
+  
   const income = transactions
     .filter((t) => t.type === "income")
     .reduce((a, t) => a + Number(t.amount), 0);
