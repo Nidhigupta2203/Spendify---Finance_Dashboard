@@ -1,53 +1,76 @@
-# React + Vite
+# 💸 Spendify - Finance Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek and modern finance dashboard built with **React**, **Vite**, and **TailwindCSS**. Spendify allows users to monitor their transactions, view powerful insights via interactive charts, and manage their expenses with a beautiful, dynamic user interface.
 
-Currently, two official plugins are available:
+## ✨ Features
+- **Interactive Dashboard:** High-level summary of your financial health.
+- **Transactions Management:** View and add your daily transactions with ease.
+- **Data Insights:** Visualize income versus expenses using beautifully crafted charts.
+- **Modern UI:** Designed with premium styling, dark mode support, and smooth micro-animations.
+- **Responsive:** Fully responsive design adapting perfectly to mobile, tablet, and desktop screens.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📸 Screenshots
+<div style="display: flex; gap: 10px; overflow-x: auto;">
+  <img src="./docs/screenshots/screenshot-1.png" width="400" alt="Dashboard View 1" />
+  <img src="./docs/screenshots/screenshot-2.png" width="400" alt="Dashboard View 2" />
+  <img src="./docs/screenshots/screenshot-3.png" width="400" alt="Dashboard View 3" />
+</div>
+*(Full size screenshots available in the `docs/screenshots` directory)*
 
-## React Compiler
+## 🚀 Tech Stack
+- **Framework:** [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Routing:** [React Router v7](https://reactrouter.com/)
+- **Data Visualization:** [Recharts](https://recharts.org/)
+- **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
+- **Alerts:** [SweetAlert2](https://sweetalert2.github.io/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📂 Project Structure
+```text
+Spendify---Finance_Dashboard/
+ ├── docs/
+ │    └── screenshots/        # Project screenshots
+ ├── public/                  # Static assets
+ ├── src/
+ │    ├── assets/             # Images and SVGs
+ │    ├── components/         # Reusable UI components
+ │    │    ├── dashboard/     # Dashboard specific blocks
+ │    │    ├── forms/         # Data entry forms
+ │    │    └── layout/        # Sidebar, Topbar
+ │    ├── context/            # React Context for global state
+ │    ├── pages/              # Route pages (Dashboard, Insights, Transactions)
+ │    ├── App.jsx             # Main Application layout & Router
+ │    ├── index.css           # Global CSS and Tailwind definitions
+ │    └── main.jsx            # React Entry Point
+ ├── .gitignore
+ ├── eslint.config.js         # Linter config
+ ├── package.json
+ ├── tailwind.config.js
+ └── vite.config.js
+```
 
-## Expanding the ESLint configuration
+## 🛠️ Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Nidhigupta2203/Spendify---Finance_Dashboard.git
+   cd Spendify---Finance_Dashboard
+   ```
 
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-src/
- ├── components/
- │    ├── ui/
- │    │    ├── Button.jsx
- │    │    ├── Card.jsx
- │    │    ├── Input.jsx
- │    │
- │    ├── layout/
- │    │    ├── Sidebar.jsx
- │    │    ├── Topbar.jsx
- │    │
- │    ├── dashboard/
- │    │    ├── SummaryCards.jsx
- │    │    ├── Charts.jsx
- │    │    ├── Insights.jsx
- │    │    ├── TransactionTable.jsx
- │    │
- │    ├── forms/
- │         ├── TransactionForm.jsx
- │
- ├── pages/
- │    ├── Dashboard.jsx
- │
- ├── context/
- │    ├── FinanceContext.jsx
- │
- ├── hooks/
- │    ├── useFinance.js
- │
- ├── utils/
- │    ├── helpers.js
- │
- ├── App.jsx
- ├── main.jsx
- ├── index.css
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/Nidhigupta2203/Spendify---Finance_Dashboard/issues).
