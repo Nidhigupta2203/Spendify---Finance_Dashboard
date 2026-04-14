@@ -10,11 +10,15 @@ A sleek and modern finance dashboard built with **React**, **Vite**, and **Tailw
 - **Responsive:** Fully responsive design adapting perfectly to mobile, tablet, and desktop screens.
 
 ## 📸 Screenshots
-<div style="display: flex; gap: 10px; overflow-x: auto;">
-  <img src="./docs/screenshots/screenshot-1.png" width="400" alt="Dashboard View 1" />
-  <img src="./docs/screenshots/screenshot-2.png" width="400" alt="Dashboard View 2" />
-  <img src="./docs/screenshots/screenshot-3.png" width="400" alt="Dashboard View 3" />
-</div>
+
+Here is a glimpse of the Spendify dashboard and its features:
+
+![Dashboard](./docs/screenshots/screenshot-1.png)
+![Transactions](./docs/screenshots/screenshot-2.png)
+![Insights](./docs/screenshots/screenshot-3.png)
+![Form](./docs/screenshots/screenshot-4.png)
+![Mobile](./docs/screenshots/screenshot-5.png)
+
 *(Full size screenshots available in the `docs/screenshots` directory)*
 
 ## 🚀 Tech Stack
