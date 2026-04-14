@@ -46,18 +46,18 @@ export default function SummaryCards() {
   ];
 
   return (
-    <div className="bg-white dark:bg-[#111827] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="bg-white/80 backdrop-blur-xl border border-white shadow-xl shadow-indigo-100/20 dark:shadow-none dark:border-gray-800 dark:bg-[#111827] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-1 rounded-3xl">
       {cards.map((card, index) => (
         <div
           key={index}
           className={`bg-gradient-to-br ${card.color} p-6 rounded-2xl shadow-md hover:scale-[1.02] transition`}
         >
           <div className="flex items-center justify-between">
-            <p className="text-gray-400 text-sm">{card.title}</p>
-            <span className="text-xl text-gray-300">{card.icon}</span>
+            <p className="text-slate-500 dark:text-gray-400 text-sm font-medium">{card.title}</p>
+            <span className="text-xl text-slate-700 dark:text-gray-300">{card.icon}</span>
           </div>
 
-          <h2 className="text-2xl font-bold mt-4">{card.value}</h2>
+          <h2 className="text-2xl font-bold mt-4 text-slate-800 dark:text-white">{card.value}</h2>
         </div>
       ))}
     </div>

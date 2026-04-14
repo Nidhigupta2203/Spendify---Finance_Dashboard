@@ -12,7 +12,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="min-h-screen w-64 bg-white dark:bg-[#0B1220] border-r border-gray-200 dark:border-gray-800 flex flex-col justify-between">
+    <div className="min-h-screen w-64 bg-white/60 backdrop-blur-2xl dark:bg-[#0B1220] border-r border-white/40 shadow-[4px_0_24px_rgba(0,0,0,0.02)] dark:border-gray-800 dark:shadow-none flex flex-col justify-between z-10 relative">
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-8">Spendify</h1>
 

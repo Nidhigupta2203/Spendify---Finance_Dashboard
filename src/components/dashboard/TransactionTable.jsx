@@ -43,7 +43,7 @@ export default function TransactionTable() {
   });
 
   return (
-    <div className="bg-white dark:bg-[#111827] p-6 rounded-2xl shadow">
+    <div className="bg-white/80 backdrop-blur-xl border border-white shadow-xl shadow-indigo-100/20 dark:shadow-none dark:border-gray-800 dark:bg-[#111827] p-6 rounded-2xl">
       {/* Controls */}
       <div className="flex flex-col md:flex-row md:items-center gap-3 mb-6">
         <input
@@ -51,13 +51,13 @@ export default function TransactionTable() {
           placeholder="Search transactions..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="bg-[#0B1220] border border-gray-700 text-black dark:text-white px-4 py-2 rounded-lg w-full md:w-64 outline-none"
+          className="bg-white dark:bg-[#0B1220] border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white px-4 py-3 rounded-xl w-full md:w-64 outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100/50 transition-all shadow-sm"
         />
 
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
-          className="bg-[#0B1220] text-black dark:text-white border border-gray-700 px-3 py-2 rounded-lg"
+          className="bg-white dark:bg-[#0B1220] border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white px-4 py-3 rounded-xl outline-none focus:border-indigo-400 transition-all shadow-sm cursor-pointer"
         >
           <option value="all">All</option>
           <option value="income">Income</option>
@@ -67,7 +67,7 @@ export default function TransactionTable() {
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className="bg-[#0B1220] text-black dark:text-white border border-gray-700 px-3 py-2 rounded-lg"
+          className="bg-white dark:bg-[#0B1220] border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white px-4 py-3 rounded-xl outline-none focus:border-indigo-400 transition-all shadow-sm cursor-pointer"
         >
           <option value="latest">Latest</option>
           <option value="oldest">Oldest</option>
@@ -80,7 +80,7 @@ export default function TransactionTable() {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-left border-b border-gray-700 text-gray-400">
+            <tr className="text-left border-b border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400">
               <th className="py-3">Date</th>
               <th>Title</th>
               <th>Amount</th>
@@ -94,7 +94,7 @@ export default function TransactionTable() {
             {filtered.map((t) => (
               <tr
                 key={t.id}
-                className="border-b border-gray-800 hover:bg-[#1F2937] transition"
+                className="border-b border-gray-100 dark:border-gray-800 hover:bg-slate-50 dark:hover:bg-[#1F2937] transition text-gray-700 dark:text-gray-300"
               >
                 <td className="py-3">{t.date}</td>
                 <td>{t.title}</td>
@@ -110,7 +110,7 @@ export default function TransactionTable() {
                 </td>
 
                 <td>{t.category}</td>
-                <td className="capitalize text-gray-300">{t.type}</td>
+                <td className="capitalize text-gray-500 dark:text-gray-400">{t.type}</td>
 
                 {role === "admin" && (
                   <td>
@@ -130,7 +130,7 @@ export default function TransactionTable() {
 
       {/* Empty */}
       {filtered.length === 0 && (
-        <p className="text-center text-gray-500 py-6">No transactions found</p>
+        <p className="text-center text-gray-400 dark:text-gray-500 py-12">No transactions found</p>
       )}
     </div>
   );

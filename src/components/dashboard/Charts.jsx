@@ -51,7 +51,7 @@ export default function Charts() {
 
   if (transactions.length === 0) {
     return (
-      <div className="bg-white dark:bg-[#111827] p-6 rounded-xl text-center text-gray-400">
+      <div className="bg-white/80 backdrop-blur-xl border border-white shadow-xl shadow-indigo-100/20 dark:shadow-none dark:border-gray-800 dark:bg-[#111827] p-6 rounded-xl text-center text-gray-400">
         No data available. Add transactions to see charts.
       </div>
     );
@@ -60,20 +60,20 @@ export default function Charts() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Categories */}
-      <div className="bg-white dark:bg-[#111827] p-6 rounded-2xl shadow">
-        <h3 className="mb-4 text-gray-300 font-medium">
+      <div className="bg-white/80 backdrop-blur-xl border border-white shadow-xl shadow-indigo-100/20 dark:shadow-none dark:border-gray-800 dark:bg-[#111827] p-6 rounded-2xl">
+        <h3 className="mb-4 text-slate-700 dark:text-gray-300 font-medium">
           Top Spending Categories
         </h3>
 
         <div className="space-y-4">
           {categoryData.map((item, index) => (
             <div key={item.name}>
-              <div className="flex justify-between text-sm text-gray-400">
+              <div className="flex justify-between text-sm text-slate-500 dark:text-gray-400 font-medium">
                 <span>{item.name}</span>
                 <span>₹ {item.value}</span>
               </div>
 
-              <div className="w-full bg-gray-700 h-2 rounded mt-1">
+              <div className="w-full bg-slate-100 dark:bg-gray-700 h-2 rounded-full mt-1 overflow-hidden">
                 <div
                   className="h-2 rounded"
                   style={{
@@ -93,8 +93,8 @@ export default function Charts() {
       </div>
 
       {/* Line Chart */}
-      <div className="bg-white dark:bg-[#111827] p-6 rounded-2xl shadow">
-        <h3 className="mb-4 text-gray-300 font-medium">Monthly Cash Flow</h3>
+      <div className="bg-white/80 backdrop-blur-xl border border-white shadow-xl shadow-indigo-100/20 dark:shadow-none dark:border-gray-800 dark:bg-[#111827] p-6 rounded-2xl">
+        <h3 className="mb-4 text-slate-700 dark:text-gray-300 font-medium">Monthly Cash Flow</h3>
 
         <div className="w-full h-64">
           <ResponsiveContainer>
@@ -115,8 +115,8 @@ export default function Charts() {
       </div>
 
       {/* Pie Chart */}
-      <div className="bg-white dark:bg-[#111827] p-6 rounded-2xl shadow lg:col-span-2">
-        <h3 className="mb-4 text-gray-300 font-medium">Category Breakdown</h3>
+      <div className="bg-white/80 backdrop-blur-xl border border-white shadow-xl shadow-indigo-100/20 dark:shadow-none dark:border-gray-800 dark:bg-[#111827] p-6 rounded-2xl lg:col-span-2">
+        <h3 className="mb-4 text-slate-700 dark:text-gray-300 font-medium">Category Breakdown</h3>
 
         <div className="w-full h-72">
           <ResponsiveContainer>
